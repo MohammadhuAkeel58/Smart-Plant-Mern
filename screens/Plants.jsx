@@ -4,7 +4,7 @@ import React from "react";
 const Plants = () => {
   return (
     <View>
-      <Text>Plants</Text>
+      <Text style={[styles.text, { fontFamily: "Courgette" }]}>Plants</Text>
     </View>
   );
 };

@@ -1,58 +1,49 @@
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
-import MaskedView from "@react-native-masked-view/masked-view";
-import { LinearGradient } from "expo-linear-gradient";
+import { StyleSheet, View, Text, Image } from "react-native";
 
-export default function Welcome() {
+const WelcomeScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.quote}>
-        "Like people, plants respond to extra attention." — H. Peter Loewer
+        "Like people, plants respond to extra attention." -H. Peter Loewer
       </Text>
-      <MaskedView maskElement={<Text style={styles.title}>Smart Plant</Text>}>
-        <LinearGradient
-          colors={["#62BA77", "#2C5436"]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-          style={styles.gradient}
-        />
-      </MaskedView>
+
+      <Text style={styles.title}>Smart Plant</Text>
       <Image
-        source={require("../assets/istockphoto-1334790507-612x612.jpg")} // Path to your local asset
+        source={require("../assets/images/istockphoto-1334790507-612x612.jpg")} // Update path based on your folder structure
         style={styles.image}
+        resizeMode="contain"
       />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    backgroundColor: "#FFFFFF",
+    justifyContent: "space-around",
     alignItems: "center",
-    backgroundColor: "#fff",
     padding: 20,
   },
   quote: {
-    fontSize: 16,
-    fontStyle: "italic",
-    color: "#4CAF50",
+    fontSize: 28,
+    fontWeight: "300",
+    color: "#2D9C47",
     textAlign: "center",
-    marginBottom: 20,
+    marginTop: 120,
   },
+
   title: {
-    fontSize: 30,
+    fontSize: 45,
     fontWeight: "bold",
-    textAlign: "center",
-  },
-  gradient: {
-    width: 200, // Match the width of your text
-    height: 40, // Match the height of your text
-  },
-  image: {
-    width: 200,
-    height: 300,
-    resizeMode: "contain",
+    color: "#2D9C47",
     marginTop: 20,
   },
+  image: {
+    width: "100%",
+    height: "50%",
+  },
 });
+
+export default WelcomeScreen;

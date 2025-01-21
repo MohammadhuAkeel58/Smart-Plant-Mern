@@ -20,6 +20,7 @@ export default function App() {
       <StatusBar style="light" />
       <NavigationContainer>
         <Drawer.Navigator
+          initialRouteName="Welcome"
           screenOptions={{
             headerTintColor: "white", // Text color
             headerBackground: () => (
