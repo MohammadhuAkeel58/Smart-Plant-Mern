@@ -80,7 +80,7 @@ const LiveData = ({ navigation }) => {
       {/* Buttons */}
       <Pressable
         style={styles.buttonWrapper}
-        onPress={() => console.log("Alert History Pressed")}
+        onPress={() => navigation.navigate("Alert")}
       >
         <LinearGradient colors={["#62BA77", "#2C5436"]} style={styles.button}>
           <Text style={styles.buttonText}>Alert History &gt;&gt;&gt;</Text>
@@ -89,7 +89,7 @@ const LiveData = ({ navigation }) => {
 
       <Pressable
         style={styles.buttonWrapper}
-        onPress={() => console.log("Plant Care Tips Pressed")}
+        onPress={() => navigation.navigate("Tips")}
       >
         <LinearGradient colors={["#62BA77", "#2C5436"]} style={styles.button}>
           <Text style={styles.buttonText}>Plant Care Tips &gt;&gt;&gt;</Text>
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "500",
     color: "#2C5436",
-    marginBottom: 20,
+    marginBottom: 40,
   },
   circleContainer: {
     justifyContent: "center",
@@ -147,7 +147,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "500",
     color: "#2C5436",
-    marginBottom: 20,
+    marginBottom: 40,
+    marginTop: 20,
   },
   buttonWrapper: {
     width: "80%",

@@ -11,26 +11,25 @@ import Select from "./screens/Select";
 import LiveData from "./screens/LiveData";
 import Alert from "./screens/Alert";
 import Plants from "./screens/Plants";
-import Tips from "./screens/Tips";
 
 const Drawer = createDrawerNavigator();
 export default function App() {
   return (
     <>
-      <StatusBar style="light" />
+      <StatusBar style="dark" />
       <NavigationContainer>
         <Drawer.Navigator
           initialRouteName="Welcome"
           screenOptions={{
-            headerTintColor: "white", // Text color
-            headerBackground: () => (
-              <LinearGradient
-                colors={["#62BA77", "#2C5436"]} // Gradient colors
-                start={{ x: 0, y: 0 }} // Top-left
-                end={{ x: 1, y: 1 }} // Bottom-right
-                style={StyleSheet.absoluteFill} // Ensures gradient fills the header
-              />
-            ),
+            // headerTintColor: "white", // Text color
+            // headerBackground: () => (
+            //   <LinearGradient
+            //     colors={["#62BA77", "#2C5436"]} // Gradient colors
+            //     start={{ x: 0, y: 0 }} // Top-left
+            //     end={{ x: 1, y: 1 }} // Bottom-right
+            //     style={StyleSheet.absoluteFill} // Ensures gradient fills the header
+            //   />
+            // ),
             drawerActiveBackgroundColor: "#62BA77",
             drawerActiveTintColor: "white",
             drawerStyle: { backgroundColor: "#ccc" },
@@ -102,6 +101,7 @@ export default function App() {
             name="Alert"
             component={Alert}
             options={{
+              headerTintColor: "black", // Text color
               drawerIcon: ({ color }) => (
                 <MaterialCommunityIcons name="bell" color={color} size={18} />
               ),
@@ -114,20 +114,6 @@ export default function App() {
             options={{
               drawerIcon: ({ color }) => (
                 <MaterialCommunityIcons name="leaf" color={color} size={18} />
-              ),
-            }}
-          />
-
-          <Drawer.Screen
-            name="Tips"
-            component={Tips}
-            options={{
-              drawerIcon: ({ color }) => (
-                <MaterialCommunityIcons
-                  name="watering-can"
-                  color={color}
-                  size={18}
-                />
               ),
             }}
           />
