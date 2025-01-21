@@ -54,6 +54,7 @@ export default function App() {
               drawerIcon: ({ color }) => (
                 <MaterialCommunityIcons name="login" color={color} size={18} />
               ),
+              headerShown: false,
             }}
           />
           <Drawer.Screen
@@ -67,6 +68,7 @@ export default function App() {
                   size={18}
                 />
               ),
+              headerShown: false,
             }}
           />
 
