@@ -11,7 +11,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 const Login = ({ navigation }) => {
   const handlePress = () => {
-    console.log("Login Confirmed");
+    navigation.navigate("Select");
   };
 
   return (
