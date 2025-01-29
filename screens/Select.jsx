@@ -10,7 +10,7 @@ const SelectPlantScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Smart Plant</Text>
-      <Text style={styles.subtitle}>Select Plant</Text>
+      <Text style={{ fontFamily: "Pattaya" }}>Select Plant</Text>
 
       {/* Lemon Button */}
       <Pressable

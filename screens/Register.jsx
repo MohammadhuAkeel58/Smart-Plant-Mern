@@ -1,4 +1,7 @@
 import React from "react";
+import { useState } from "react";
+import { Alert } from "react-native";
+
 import {
   StyleSheet,
   View,
@@ -8,34 +11,83 @@ import {
   Image,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import axios from "axios";
+const Register = ({ navigation }) => {
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-const SignUpScreen = ({ navigation }) => {
-  const handlePress = () => {
-    navigation.navigate("Login");
+  const validateForm = () => {
+    // Validation checks
+    if (!userName.trim() || !email.trim() || !password.trim()) {
+      Alert.alert("Validation Error", "All fields are required.");
+      return false;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      Alert.alert("Validation Error", "Please enter a valid email address.");
+      return false;
+    }
+    if (password.length < 6) {
+      Alert.alert(
+        "Validation Error",
+        "Password must be at least 6 characters long."
+      );
+      return false;
+    }
+    return true;
   };
+
+  const handleSignUp = async () => {
+    if (!validateForm()) return;
+
+    try {
+      const response = await axios.post(
+        "http://10.0.2.2:5000/api/auth/register",
+        {
+          userName,
+          email,
+          password,
+        }
+      );
+      console.log("Response:", response.data); // For debugging
+      Alert.alert("Success", "Account created successfully.");
+      navigation.navigate("Login");
+    } catch (error) {
+      console.error("Error during registration:", error); // For debugging
+      Alert.alert("Error", "Could not create account. Please try again.");
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Smart Plant</Text>
       <Text style={styles.subtitle}>SignUp</Text>
 
+      {/* Username Input */}
       <LinearGradient
         colors={["#62BA77", "#2C5436"]}
         style={styles.inputWrapper}
       >
         <TextInput
-          placeholder="Enter User Name"
+          placeholder="Username"
+          value={userName}
+          onChangeText={setUserName}
           placeholderTextColor="#FFFFFF"
           style={styles.inputField}
           selectionColor="#FFFFFF"
         />
       </LinearGradient>
 
+      {/* Email Input */}
       <LinearGradient
         colors={["#62BA77", "#2C5436"]}
         style={styles.inputWrapper}
       >
         <TextInput
-          placeholder="email"
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
           placeholderTextColor="#FFFFFF"
           style={styles.inputField}
           keyboardType="email-address"
@@ -43,25 +95,15 @@ const SignUpScreen = ({ navigation }) => {
         />
       </LinearGradient>
 
-      <LinearGradient
-        colors={["#62BA77", "#2C5436"]}
-        style={styles.inputWrapper}
-      >
-        <TextInput
-          placeholder="Phone No"
-          placeholderTextColor="#FFFFFF"
-          style={styles.inputField}
-          keyboardType="phone-pad"
-          selectionColor="#FFFFFF"
-        />
-      </LinearGradient>
-
+      {/* Password Input */}
       <LinearGradient
         colors={["#62BA77", "#2C5436"]}
         style={styles.inputWrapper}
       >
         <TextInput
           placeholder="Password"
+          value={password}
+          onChangeText={setPassword}
           placeholderTextColor="#FFFFFF"
           style={styles.inputField}
           secureTextEntry
@@ -71,7 +113,8 @@ const SignUpScreen = ({ navigation }) => {
 
       <Text style={styles.confirmText}>Click the below Plant to confirm</Text>
 
-      <Pressable style={styles.imageButton} onPress={handlePress}>
+      {/* Confirm Button */}
+      <Pressable style={styles.imageButton} onPress={handleSignUp}>
         <Image
           source={require("../assets/images/istockphoto-1334790507-612x612.jpg")}
           style={styles.image}
@@ -81,7 +124,6 @@ const SignUpScreen = ({ navigation }) => {
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -135,4 +177,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignUpScreen;
+export default Register;
